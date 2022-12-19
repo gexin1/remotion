@@ -34,7 +34,13 @@ type PreSticherOptions = {
 	ffmpegExecutable: FfmpegExecutable | undefined;
 	imageFormat: ImageFormat;
 	ffmpegOverride: FfmpegOverrideFn;
-	composeMethodOverride?: Function;
+	composeMethodOverride?: (
+		args: any
+	) => [
+		file: string,
+		arguments?: readonly string[] | undefined,
+		options?: execa.Options<string> | undefined
+	];
 	signal: CancelSignal;
 	videoBitrate: string | null;
 };
@@ -139,8 +145,7 @@ export const prespawnFfmpeg = async (
 
 	if (options.verbose && options.composeMethodOverride) {
 		console.log(
-			'options.composeMethodOverride' +
-				options.composeMethodOverride(options)
+			'options.composeMethodOverride' + options.composeMethodOverride(options)
 		);
 	}
 
@@ -154,7 +159,7 @@ export const prespawnFfmpeg = async (
 				),
 				finalFfmpegString
 		  );
-			
+
 	options.signal(() => {
 		task.kill();
 	});
