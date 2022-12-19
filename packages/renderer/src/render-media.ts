@@ -1,3 +1,4 @@
+import type execa from 'execa';
 import type {ExecaChildProcess} from 'execa';
 import fs from 'fs';
 import os from 'os';
@@ -106,7 +107,13 @@ export type RenderMediaOptions = {
 	muted?: boolean;
 	enforceAudioTrack?: boolean;
 	ffmpegOverride?: FfmpegOverrideFn;
-	composeMethodOverride?: Function;
+	composeMethodOverride?: (
+		args: any
+	) => [
+		file: string,
+		arguments?: readonly string[] | undefined,
+		options?: execa.Options<string> | undefined
+	];
 	audioBitrate?: string | null;
 	videoBitrate?: string | null;
 	onSlowestFrames?: OnSlowestFrames;

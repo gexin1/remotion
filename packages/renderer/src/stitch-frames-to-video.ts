@@ -74,7 +74,13 @@ export type StitcherOptions = {
 	muted?: boolean;
 	enforceAudioTrack?: boolean;
 	ffmpegOverride?: FfmpegOverrideFn;
-	composeMethodOverride?: Function;
+	composeMethodOverride?: (
+		args: any
+	) => [
+		file: string,
+		arguments?: readonly string[] | undefined,
+		options?: execa.Options<string> | undefined
+	];
 };
 
 type ReturnType = {
@@ -408,8 +414,7 @@ export const spawnFfmpeg = async (
 
 	if (options.verbose && options.composeMethodOverride) {
 		console.log(
-			'options.composeMethodOverride' +
-				options.composeMethodOverride(options)
+			'options.composeMethodOverride' + options.composeMethodOverride(options)
 		);
 	}
 
@@ -426,7 +431,7 @@ export const spawnFfmpeg = async (
 					cwd: options.dir,
 				}
 		  );
-			
+
 	options.cancelSignal?.(() => {
 		task.kill();
 	});
