@@ -34,6 +34,7 @@ type PreSticherOptions = {
 	ffmpegExecutable: FfmpegExecutable | undefined;
 	imageFormat: ImageFormat;
 	ffmpegOverride: FfmpegOverrideFn;
+	composeGifMethodOverride?: Function;
 	signal: CancelSignal;
 	videoBitrate: string | null;
 };
@@ -136,15 +137,24 @@ export const prespawnFfmpeg = async (
 		? options.ffmpegOverride({type: 'pre-stitcher', args: ffmpegString})
 		: ffmpegString;
 
-	const task = execa(
-		await getExecutableBinary(
-			options.ffmpegExecutable ?? null,
-			remotionRoot,
-			'ffmpeg'
-		),
-		finalFfmpegString
-	);
+	if (options.verbose && options.composeGifMethodOverride) {
+		console.log(
+			'options.composeGifMethodOverride' +
+				options.composeGifMethodOverride(finalFfmpegString)
+		);
+	}
 
+	const task = options.composeGifMethodOverride
+		? execa(options.composeGifMethodOverride(finalFfmpegString))
+		: execa(
+				await getExecutableBinary(
+					options.ffmpegExecutable ?? null,
+					remotionRoot,
+					'ffmpeg'
+				),
+				finalFfmpegString
+		  );
+			
 	options.signal(() => {
 		task.kill();
 	});
