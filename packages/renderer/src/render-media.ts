@@ -106,7 +106,7 @@ export type RenderMediaOptions = {
 	muted?: boolean;
 	enforceAudioTrack?: boolean;
 	ffmpegOverride?: FfmpegOverrideFn;
-	composeGifMethodOverride?: Function;
+	composeMethodOverride?: Function;
 	audioBitrate?: string | null;
 	videoBitrate?: string | null;
 	onSlowestFrames?: OnSlowestFrames;
@@ -172,7 +172,7 @@ export const renderMedia = ({
 	muted,
 	enforceAudioTrack,
 	ffmpegOverride,
-	composeGifMethodOverride,
+	composeMethodOverride,
 	audioBitrate,
 	videoBitrate,
 	onSlowestFrames,
@@ -335,7 +335,7 @@ export const renderMedia = ({
 					imageFormat,
 					signal: cancelPrestitcher.cancelSignal,
 					ffmpegOverride: ffmpegOverride ?? (({args}) => args),
-					composeGifMethodOverride,
+					composeMethodOverride,
 					videoBitrate: videoBitrate ?? null,
 				},
 				remotionRoot
@@ -493,7 +493,7 @@ export const renderMedia = ({
 					muted: disableAudio,
 					enforceAudioTrack,
 					ffmpegOverride,
-					composeGifMethodOverride,
+					composeMethodOverride,
 					audioBitrate,
 					videoBitrate,
 				}),

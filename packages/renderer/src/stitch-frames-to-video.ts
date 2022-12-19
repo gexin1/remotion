@@ -74,7 +74,7 @@ export type StitcherOptions = {
 	muted?: boolean;
 	enforceAudioTrack?: boolean;
 	ffmpegOverride?: FfmpegOverrideFn;
-	composeGifMethodOverride?: Function;
+	composeMethodOverride?: Function;
 };
 
 type ReturnType = {
@@ -406,15 +406,15 @@ export const spawnFfmpeg = async (
 		console.log(finalFfmpegString);
 	}
 
-	if (options.verbose && options.composeGifMethodOverride) {
+	if (options.verbose && options.composeMethodOverride) {
 		console.log(
-			'options.composeGifMethodOverride' +
-				options.composeGifMethodOverride(finalFfmpegString)
+			'options.composeMethodOverride' +
+				options.composeMethodOverride(finalFfmpegString)
 		);
 	}
 
-	const task = options.composeGifMethodOverride
-		? execa(options.composeGifMethodOverride(finalFfmpegString))
+	const task = options.composeMethodOverride
+		? execa(options.composeMethodOverride(finalFfmpegString))
 		: execa(
 				await getExecutableBinary(
 					options.ffmpegExecutable ?? null,
