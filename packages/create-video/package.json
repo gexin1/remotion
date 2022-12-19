@@ -1,6 +1,6 @@
 {
 	"name": "create-video",
-	"version": "9.0.0",
+	"version": "9.0.1-9.0.0.0",
 	"description": "",
 	"main": "dist/index.js",
 	"bin": {
@@ -36,5 +36,6 @@
 		"prettier-plugin-organize-imports": "^2.3.4",
 		"typescript": "^4.7.0",
 		"vitest": "0.24.3"
-	}
+	},
+	"gitHead": "d0e94a339ff987633662f2fbed7c0d523e1c51b6"
 }

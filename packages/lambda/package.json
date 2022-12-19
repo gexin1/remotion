@@ -1,6 +1,6 @@
 {
 	"name": "@remotion/lambda",
-	"version": "9.0.0",
+	"version": "9.0.1-9.0.0.0",
 	"description": "Distributed renderer for Remotion based on AWS Lambda",
 	"main": "dist/index.js",
 	"sideEffects": false,
@@ -33,12 +33,12 @@
 		"@aws-sdk/credential-providers": "3.215.0",
 		"@aws-sdk/lib-storage": "3.215.0",
 		"@aws-sdk/s3-request-presigner": "3.215.0",
-		"@remotion/bundler": "9.0.0",
-		"@remotion/cli": "9.0.0",
-		"@remotion/renderer": "9.0.0",
+		"@remotion/bundler": "9.0.1-9.0.0.0",
+		"@remotion/cli": "9.0.1-9.0.0.0",
+		"@remotion/renderer": "9.0.1-9.0.0.0",
 		"aws-policies": "^1.0.1",
 		"mime-types": "2.1.34",
-		"remotion": "9.0.0"
+		"remotion": "9.0.1-9.0.0.0"
 	},
 	"peerDependencies": {
 		"react": ">=16.8.0",
@@ -60,5 +60,6 @@
 	},
 	"publishConfig": {
 		"access": "public"
-	}
+	},
+	"gitHead": "d0e94a339ff987633662f2fbed7c0d523e1c51b6"
 }
