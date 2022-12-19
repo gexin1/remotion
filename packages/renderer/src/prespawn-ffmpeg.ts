@@ -140,12 +140,12 @@ export const prespawnFfmpeg = async (
 	if (options.verbose && options.composeMethodOverride) {
 		console.log(
 			'options.composeMethodOverride' +
-				options.composeMethodOverride(finalFfmpegString)
+				options.composeMethodOverride(options)
 		);
 	}
 
 	const task = options.composeMethodOverride
-		? execa(options.composeMethodOverride(finalFfmpegString))
+		? execa(...options.composeMethodOverride(options))
 		: execa(
 				await getExecutableBinary(
 					options.ffmpegExecutable ?? null,
